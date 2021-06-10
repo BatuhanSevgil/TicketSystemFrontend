@@ -1,0 +1,114 @@
+<!-- <body>
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <div class="login100-pic js-tilt">
+          <img src="assets/img/img-01.png" alt="IMG" />
+        </div>
+
+        <form
+          class="login100-form"
+          [formGroup]="frmLogin"
+          (ngSubmit)="Login(frmLogin.value)"
+        >
+          <span class="login100-form-title">Giriş Yap </span>
+
+          <div class="wrap-input100 validate-input">
+            <input
+              class="input100"
+              type="text"
+              name="username"
+              placeholder="E-posta"
+            />
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </span>
+          </div>
+
+          <div class="wrap-input100 validate-input">
+            <input
+              class="input100"
+              type="password"
+              name="password"
+              placeholder="Şifre "
+            />
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-lock" aria-hidden="true"></i>
+            </span>
+          </div>
+
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn">Giriş yap</button>
+          </div>
+
+          <div class="text-center p-t-16">
+            <a class="txt2" href="#">
+              <br />
+              <br />
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+ -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+
+    <!-- Custom styles for this template -->
+  </head>
+
+  <body class="text-center bg-dark text-white">
+    <form
+      class="login100-form"
+      [formGroup]="frmLogin"
+      (ngSubmit)="Login(frmLogin.value)"
+    >
+      <img
+        class="mb-4"
+        src="https://via.placeholder.com/400"
+        alt=""
+        width="400"
+        height="200"
+      />
+      <h1 class="h3 mb-3 font-weight-normal">Giriş Yap</h1>
+      <label for="inputEmail" class="sr-only">Kullanıcı adı</label>
+      <input
+        type="text"
+        class="form-control mb-2"
+        formControlName="username"
+        placeholder="Kullanıcı adı"
+        required
+        autofocus
+      />
+      <label for="inputPassword" class="sr-only">Şifre</label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        placeholder="Password"
+        required
+      />
+
+      <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">
+        Giriş Yap
+      </button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    </form>
+  </body>
+</html>

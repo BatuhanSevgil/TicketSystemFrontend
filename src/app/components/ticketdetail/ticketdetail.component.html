@@ -1,0 +1,178 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-4 col-xl-4 col-xxl-4">
+      <table class="table bg-dark table-sm table-borderless text-white">
+        <thead class="float-end pt-2">
+          <tr>
+            <td><p class="h4">Özet</p></td>
+          </tr>
+        </thead>
+        <tbody class="text-white">
+          <tr>
+            <td class="text-lg-start">
+              <i class="fas fa-closed-captioning"> </i>Konu
+            </td>
+            <td>{{ data.Detail.subject }}</td>
+          </tr>
+
+          <tr>
+            <td class="text-lg-start">
+              <i class="fas fa-clock"> </i>Son Güncelleme
+            </td>
+            <td>
+              <span class="text-white">{{
+                data.Detail.lastUpdateDate | date: "dd/MM/YYYY  H:m"
+              }}</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="text-lg-start">
+              <i class="fas fa-info-circle"> </i>Durum
+            </td>
+            <td>
+              {{ data.Detail.status }}
+            </td>
+          </tr>
+          <tr>
+            <td class="text-lg-start">
+              <i class="fas fa-exclamation-triangle"> </i>Önem Düzeyi
+            </td>
+            <td>
+              {{ data.Detail.important }}
+            </td>
+          </tr>
+
+          <tr>
+            <td class="text-lg-start">
+              <i class="fas fa-building"> </i>Son Atanan
+            </td>
+            <td>
+              <span class="text-white">{{ data.Detail.lastAssignment }} </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-8 col-xl-8 col-xxl-8">
+      <form
+        [formGroup]="frmTicketDetail"
+        (ngSubmit)="frmSubmit(frmTicketDetail.value, data.Detail)"
+      >
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Cevap </mat-label>
+          <textarea
+            matInput
+            [mat-autosize]
+            [matAutosizeMinRows]="5"
+            formControlName="description"
+          ></textarea>
+        </mat-form-field>
+
+        <!-- select opt start -->
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="w-100 h-100" appearance="fill">
+              <mat-label>Durum</mat-label>
+              <mat-select
+                formControlName="toStatusId"
+                [value]="data.Detail.statusId"
+              >
+                <mat-option [value]="0"> Seçiniz </mat-option>
+                <mat-option
+                  *ngFor="let status of statusDetail"
+                  [value]="status.statusId"
+                >
+                  {{ status.statusDetail }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100 h-100" appearance="fill">
+              <mat-label>Önem Düzeyi</mat-label>
+              <mat-select
+                formControlName="toImportantId"
+                [value]="data.Detail.importantId"
+              >
+                <mat-option [value]="0">Seçiniz</mat-option>
+                <mat-option
+                  *ngFor="let important of importantDetail"
+                  [value]="important.importantId"
+                >
+                  {{ important.importantDetail }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100 h-100" appearance="fill">
+              <mat-label>Departmana Ata </mat-label>
+              <mat-select
+                [disabled]="this.frmTicketDetail.value['toPersonId'] != 0"
+                formControlName="toDepartmentId"
+              >
+                <mat-option [value]="0">Seçiniz</mat-option>
+                <mat-option
+                  *ngFor="let department of departmentDetail"
+                  [value]="department.departmentId"
+                >
+                  {{ department.departmentDetail }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="w-100 h-100" appearance="fill">
+              <mat-label>Personele Ata</mat-label>
+              <mat-select
+                [disabled]="this.frmTicketDetail.value['toDepartmentId'] != 0"
+                formControlName="toPersonId"
+              >
+                <mat-option [value]="0"> Seçiniz</mat-option>
+                <mat-option
+                  *ngFor="let person of personNameDetail"
+                  [value]="person.personId"
+                >
+                  {{ person.realName }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="row mx-auto p-0">
+            <div class="col mx-auto">
+              <button mat-flat-button class="w-100 h-100" on color="accent">
+                Cevapla
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- select opt end -->
+        <!-- card start  -->
+        <div class="overflow-auto h-75 w-100 d-inline-block">
+          <mat-card
+            *ngFor="let ticket of data.Detail.ticketDetails"
+            class="border bg-dark mt-2"
+          >
+            <mat-card-subtitle>
+              {{ ticket.updateDate | date: "dd/MM/YYYY  H:m" }}
+              <p class="h6">{{ ticket.sendPersonName }}</p>
+            </mat-card-subtitle>
+            <hr class="text-white mt-2 mb-2" />
+            <mat-card-content>
+              {{ ticket.description }}
+            </mat-card-content>
+            <hr class="text-white mt-2 mb-2" />
+            <mat-card-subtitle>
+              Atanan Personel :{{ ticket.toPersonName }}<br />
+              Atanan Departman : {{ ticket.toDepartmentName }} <br />
+              Durum :{{ ticket.toStatusName }}<br />
+              Önem Düzeyi : {{ ticket.toImportantName }}
+            </mat-card-subtitle>
+          </mat-card>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<form [formGroup]="frmNewTicket" (ngSubmit)="createTicket(frmNewTicket.value)">
+  <div class="container-fluid">
+    <div class="col-12">
+      <mat-form-field class="w-100">
+        <mat-label>Konu veya Abone Numarası</mat-label>
+        <input
+          matInput
+          formControlName="subject"
+          placeholder="Konu veya Abone Numarası "
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-12">
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Cevap </mat-label>
+        <textarea
+          matInput
+          [mat-autosize]
+          [matAutosizeMinRows]="5"
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <!-- select opt start -->
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="w-100 h-100" appearance="fill">
+          <mat-label>Önem Düzeyi</mat-label>
+          <mat-select formControlName="toImportantId">
+            <mat-option [value]="0">Seçiniz</mat-option>
+            <mat-option
+              *ngFor="let important of importantDetail"
+              [value]="important.importantId"
+            >
+              {{ important.importantDetail }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col">
+        <mat-form-field class="w-100 h-100" appearance="fill">
+          <mat-label>Departmana Ata </mat-label>
+          <mat-select
+            [(value)]="dValue"
+            [disabled]="pValue > 0"
+            formControlName="toDepartmentId"
+          >
+            <mat-option [value]="0">Seçiniz</mat-option>
+            <mat-option
+              *ngFor="let department of departmentDetail"
+              [value]="department.departmentId"
+            >
+              {{ department.departmentDetail }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="w-100 h-100" appearance="fill">
+          <mat-label>Personele Ata </mat-label>
+          <mat-select
+            [(value)]="pValue"
+            [disabled]="dValue > 0"
+            formControlName="toPersonId"
+          >
+            <mat-option [value]="0">Seçiniz</mat-option>
+            <mat-option
+              *ngFor="let person of personNameDetail"
+              [value]="person.personId"
+            >
+              {{ person.realName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto p-0">
+    <div class="col-12 mx-auto">
+      <button mat-flat-button class="w-100 h-100" on color="accent">
+        Yeni Talep Oluştur
+      </button>
+    </div>
+  </div>
+</form>
