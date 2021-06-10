@@ -15,7 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './components/navbar/navbar.component';
+// import { NavbarComponent } from './components/navbar/navbar.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -23,30 +23,28 @@ import { MatCardModule } from '@angular/material/card';
 
 import { MatInputModule } from '@angular/material/input';
 
-import { TicketdetailComponent } from './components/ticketdetail/ticketdetail.component';
-import { AddticketmodalComponent } from './components/addticketmodal/addticketmodal.component';
+// import { TicketdetailComponent } from './components/ticketdetail/ticketdetail.component';
+// import { AddticketmodalComponent } from './components/addticketmodal/addticketmodal.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-import { WorksComponent } from './components/main/component/works/works.component';
+// import { WorksComponent } from './components/main/component/works/works.component';
 
 import { ApiErrorInterceptor } from './interceptor/api-error.interceptor';
-import { MainComponent } from './components/main/main.component';
+// import { MainComponent } from './components/main/main.component';
 import { LoginGuard } from './interceptor/login.guard';
-import { ToworksComponent } from './components/main/component/toworks/toworks.component';
-import { SubjectPipe } from './Pipe/subject.pipe';
+// import { ToworksComponent } from './components/main/component/toworks/toworks.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    WorksComponent,
-    TicketdetailComponent,
-    AddticketmodalComponent,
+    // NavbarComponent,
+    // WorksComponent,
+    // TicketdetailComponent,
+    // AddticketmodalComponent,
     LoginPageComponent,
-    MainComponent,
-    ToworksComponent,
-    SubjectPipe,
+    // MainComponent,
+    // ToworksComponent,
   ],
   imports: [
     BrowserModule,
