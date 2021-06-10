@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DBOticket } from 'src/app/models/DB/DBOTicket';
+import { DBOticket } from 'src/app/models/DB/DBOticket';
 import { TicketService } from 'src/app/services/ticket.service';
 import { AddticketmodalComponent } from '../addticketmodal/addticketmodal.component';
 

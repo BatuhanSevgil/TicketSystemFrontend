@@ -5,7 +5,7 @@ import { MatDialog, DialogPosition } from '@angular/material/dialog';
 import { TicketdetailComponent } from '../../../ticketdetail/ticketdetail.component';
 import { TicketdetailService } from 'src/app/services/ticketdetail.service';
 import { TicketFilter } from 'src/app/models/TicketFilter';
-import { DBOticket } from 'src/app/models/DB/DBOTicket';
+import { DBOticket } from 'src/app/models/DB/DBOticket';
 import { TicketEventService } from 'src/app/services/ticket-event.service';
 import { Departments } from 'src/app/models/EventModel/Department';
 import { ToastrService } from 'ngx-toastr';
