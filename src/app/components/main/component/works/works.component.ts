@@ -75,7 +75,17 @@ export class WorksComponent implements OnInit {
       .subscribe((res) => {
         let Detail = res.data;
         const dialogRef = this.dialog.open(TicketdetailComponent, {
-          panelClass: ['overflow-auto', 'col-8'],
+          panelClass: [
+            'overflow-auto',
+            //  'col-md-12 col-sm-12 col-xs-12 col-lg-8 col-xl-8 col-xxl-8',
+            'col-md-12',
+            'col-sm-12',
+            'col-xs-12',
+            'col-lg-8',
+            'col-xl-8',
+            'col-xxl-8',
+            'p-0',
+          ],
           data: { Detail },
         });
       });
