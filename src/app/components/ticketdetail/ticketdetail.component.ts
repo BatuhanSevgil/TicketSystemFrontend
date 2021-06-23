@@ -45,7 +45,11 @@ export class TicketdetailComponent implements OnInit {
   frmTicketDetail: FormGroup;
 
   frmSubmit(ticketdetailFrom: TicketDetailFrom, ticket: Ticket) {
-    if (!this.frmTicketDetail.valid) {
+    let departmentValue = this.frmTicketDetail.value['toDepartmentId'];
+    let personValue = this.frmTicketDetail.value['toPersonId'];
+    let lastAssign: boolean = personValue > 0 || departmentValue > 0;
+
+    if (!this.frmTicketDetail.valid || !lastAssign) {
       this.toastr.warning('Formu Doldurunuz');
     } else {
       let result = this.detailService

@@ -9,6 +9,9 @@ import { DBOticket } from 'src/app/models/DB/DBOticket';
 import { TicketEventService } from 'src/app/services/ticket-event.service';
 import { Departments } from 'src/app/models/EventModel/Department';
 import { ToastrService } from 'ngx-toastr';
+import { Status } from 'src/app/models/EventModel/Status';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { FilterForm } from 'src/app/models/FormModels/FilterForm';
 
 @Component({
   selector: 'app-works',
@@ -18,6 +21,7 @@ import { ToastrService } from 'ngx-toastr';
 export class WorksComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
+    private frmBuilder: FormBuilder,
     private ticketservice: TicketService,
     public dboticket: DBOticket,
     private ticketDetail: TicketdetailService,
@@ -26,12 +30,37 @@ export class WorksComponent implements OnInit {
   ) {}
   dialogsPosition: DialogPosition;
 
-  filterText: string;
+  frmFilter: FormGroup;
+
+  frmCreate() {
+    this.frmFilter = this.frmBuilder.group({
+      subject: [],
+      statusId: [0],
+      departmentId: [0],
+    });
+  }
+
+  formFilter(filter: FilterForm) {
+    console.log(filter);
+
+    if (
+      filter.departmentId == 0 &&
+      filter.statusId == 0 &&
+      filter.subject == null
+    ) {
+      this.getTicket();
+    }
+    this.ticketservice.GetFilter(filter).subscribe((res) => {
+      this.ToastrShow(res.success);
+      console.log(res.data);
+      this.dboticket.DBOTicket = res.data;
+    });
+  }
 
   public TicketDB: Ticket[] = this.dboticket.GetDB;
 
-  selectedDepartment: number = 0;
   departmentDetail: Departments[] = [];
+  statusDetail: Status[] = [];
   Tickets: Ticket[];
   ticketHolder: Ticket;
   colms: string[] = [
@@ -46,16 +75,10 @@ export class WorksComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.frmCreate();
     this.getTicket();
+    this.GetStatus();
     this.GetDepartment();
-  }
-
-  Filter() {
-    let filter: TicketFilter = new TicketFilter();
-    filter.subject = this.filterText;
-    this.ticketservice.GetFilter(filter).subscribe((res) => {
-      this.dboticket.DBOTicket = res.data;
-    });
   }
 
   getTicket() {
@@ -69,6 +92,13 @@ export class WorksComponent implements OnInit {
       this.departmentDetail = res.data;
     });
   }
+
+  GetStatus() {
+    this.ticketEvent.GetAllStatusDetail().subscribe((res) => {
+      this.statusDetail = res.data;
+    });
+  }
+
   openDialog(ticket: Ticket): void {
     let ticketdetail = this.ticketDetail
       .GetTicketDetail(ticket)

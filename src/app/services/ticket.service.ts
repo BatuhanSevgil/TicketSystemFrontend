@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { FilterForm } from '../models/FormModels/FilterForm';
 import { newTicket } from '../models/FormModels/newTicket';
 import { listResponseModel } from '../models/Interface/listResponseModel';
 import { ResponseModel } from '../models/Interface/ResponseModel';
@@ -54,9 +55,9 @@ export class TicketService {
     return this.client.post<Result>(apiUrl, ticket);
   }
 
-  GetFilter(ticket: TicketFilter): Observable<listResponseModel<Ticket>> {
+  GetFilter(filter: FilterForm): Observable<listResponseModel<Ticket>> {
     let apiUrl = environment.apiUrl + 'ticket/filter';
-    return this.client.post<listResponseModel<Ticket>>(apiUrl, ticket);
+    return this.client.post<listResponseModel<Ticket>>(apiUrl, filter);
   }
 
   //#endregion
