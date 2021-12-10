@@ -84,7 +84,7 @@ export class AddticketmodalComponent implements OnInit {
         Validators.compose([Validators.nullValidator, Validators.required]),
       ],
       toImportantId: [
-        '',
+        1,
         Validators.compose([Validators.nullValidator, Validators.required]),
       ],
       toDepartmentId: [

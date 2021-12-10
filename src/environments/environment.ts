@@ -4,8 +4,8 @@
 import 'zone.js/dist/zone-error';
 
 export const environment = {
-  // apiUrl: 'https://localhost:5001/api/',
-  apiUrl: 'https://ngtest.somee.com/api/',
+  apiUrl: 'https://localhost:5001/api/',
+  //apiUrl: 'https://ngtest.somee.com/api/',
   production: false,
 };
 
